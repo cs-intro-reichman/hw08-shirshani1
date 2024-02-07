@@ -68,7 +68,7 @@ class PlayList {
      */
     public void removeLast() {
         if (size > 0) {
-            tracks[size] = null;
+            tracks[size - 1] = null;
             size--;
         }
     }
