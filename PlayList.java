@@ -110,7 +110,7 @@ class PlayList {
             return false;
         }
 
-        for (int j = size; j > i; j--) {
+        for (int j = size; j >= i; j--) {
             tracks[j] = tracks[j - 1];
         }
 
