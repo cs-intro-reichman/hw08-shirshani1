@@ -39,13 +39,12 @@ class PlayList {
      * Otherwise, appends the track and returns true.
      */
     public boolean add(Track track) {
-        if (size < maxSize) {
-            tracks[size] = track;
-            size++;
-            return true;
-        } else {
+        if (size >= maxSize) {
             return false;
         }
+        tracks[size] = track;
+        size++;
+        return true;
     }
 
     /**
@@ -54,13 +53,12 @@ class PlayList {
      */
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
-        StringBuilder builde = new StringBuilder();
+        StringBuilder build = new StringBuilder();
         for (int i = 0; i < size; i++) {
-            builde.append("\n");
-            builde.append(tracks[i]);
-
+            build.append("\n");
+            build.append(tracks[i].toString());
         }
-        return builde.toString();
+        return build.toString();
     }
 
     /**
@@ -68,18 +66,18 @@ class PlayList {
      */
     public void removeLast() {
         if (size > 0) {
-            tracks[size - 1] = null;
             size--;
+            tracks[size] = null;
         }
     }
 
     /** Returns the total duration (in seconds) of all the tracks in this list. */
     public int totalDuration() {
-        int sum = 0;
+        int total = 0;
         for (int i = 0; i < size; i++) {
-            sum = sum + tracks[i].getDuration();
+            total += tracks[i].getDuration();
         }
-        return sum;
+        return total;
     }
 
     /**
@@ -88,7 +86,7 @@ class PlayList {
      */
     public int indexOf(String title) {
         for (int i = 0; i < size; i++) {
-            if (tracks[i].getTitle() == title) {
+            if (title == tracks[i].getTitle()) {
                 return i;
             }
         }
@@ -104,18 +102,20 @@ class PlayList {
      * returns true.
      */
     public boolean add(int i, Track track) {
-        if (size >= maxSize) {
+        if (size == maxSize)
             return false;
-        }
         if (i < 0 || i > size) {
             return false;
         }
-        size++;
-        for (int j = size - 1; j > i; j--) {
+
+        for (int j = size; j > i; j--) {
             tracks[j] = tracks[j - 1];
         }
         tracks[i] = track;
+        size++;
+
         return true;
+
     }
 
     /**
