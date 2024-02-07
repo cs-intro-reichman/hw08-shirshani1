@@ -109,7 +109,7 @@ class PlayList {
         if (i < 0 || i > size) {
             return false;
         }
-       
+
         for (int j = size; j > i; j--) {
             tracks[j] = tracks[j - 1];
         }
@@ -223,10 +223,9 @@ class PlayList {
         for (int i = 0; i < size; i++) {
             between = tracks[i];
             j = minIndex(i);
-                tracks[i] = tracks[j];
-                tracks[j] = between;
-               
-            }
+            tracks[i] = tracks[j];
+            tracks[j] = between;
+
         }
     }
-
+}
